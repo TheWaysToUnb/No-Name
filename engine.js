@@ -50,6 +50,24 @@ function startTestRoom() {
     if (e.key === 'w') input.jump = false;
   };
 
+  window.onkeydown = (e) => {
+  if (e.key === 'a') input.left = true;
+  if (e.key === 'd') input.right = true;
+  if (e.key === 'w') input.jump = true;
+
+  if (e.key === 'j') useAbility('primary');
+  if (e.key === 'k') useAbility('ability1');
+  if (e.key === 'l') useAbility('ability2');
+};
+
+  function useAbility(slot) {
+  const ability = currentShell.abilities[slot];
+  if (!ability) return;
+
+  const handler = ABILITY_HANDLERS[ability.id];
+  if (handler) handler(player);
+  }
+
   function loop() {
     ctx.fillStyle = '#101018';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -58,6 +76,11 @@ function startTestRoom() {
     player.draw(ctx);
 
     requestAnimationFrame(loop);
+
+    ACTIVE_PROJECTILES.forEach(p => { p.update(); p.draw(ctx); });
+ACTIVE_DEPLOYABLES.forEach(d => { d.update(); d.draw(ctx); });
+ACTIVE_DRONES.forEach(dr => { dr.update(); dr.draw(ctx); });
+
   }
 
   loop();
