@@ -1,1 +1,28 @@
+body {
+  margin: 0;
+  background: #000;
+  font-family: Arial, sans-serif;
+}
+
+.menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+}
+
+.shellButton {
+  padding: 10px;
+  margin: 6px 0;
+  background: #222;
+  border: 1px solid #555;
+  cursor: pointer;
+}
+
+.shellButton:hover {
+  background: #333;
+}
 
