@@ -171,10 +171,15 @@ const ABILITY_HANDLERS = {
   },
 
   void_slash(player) {
-    if (!canUseAbility('void_slash')) return;
-    setCooldown('void_slash', 300);
-    return performMelee(player);
-  },
+  if (!canUseAbility('void_slash')) return;
+  setCooldown('void_slash', 300);
+
+  const hitbox = performMelee(player);
+  lastMeleeHitbox = hitbox;
+
+  setTimeout(() => lastMeleeHitbox = null, 80);
+},
+
 
   rift_step(player) {
     if (!canUseAbility('rift_step')) return;
